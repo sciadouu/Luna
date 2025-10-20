@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Luna Bot",
+  "version": "5.0.0",
+  "description": "LunaBot for wolvesville",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.wolvesville.com/*"],
+      "js": ["inject.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["lib/main.js", "lib/jquery.js", "lib/socket.js", "lib/abc.js", "intercept.js"],
+      "matches": ["*://*.wolvesville.com/*"]
+    }
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "permissions": ["storage", "scripting", "debugger", "tabs"],
+
+  "host_permissions": ["https://wov-backend.vercel.app/*", "*://*.wolvesville.com/*"],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  }
+}
